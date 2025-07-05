@@ -35,8 +35,8 @@ export async function POST(request: Request) {
             // break out of while means code generated is indeed unique
 
             await pool.query(
-                'INSERT INTO urls (short_code, original_url) VALUES ($1, $2)',
-                [code, url]
+                'INSERT INTO urls (short_code, original_url, count) VALUES ($1, $2, $3)',
+                [code, url, 1]
             );
             
             return NextResponse.json({ success: true, code });
